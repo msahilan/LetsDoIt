@@ -118,7 +118,7 @@ Resources:
     Properties:
       Name: !Join ['-', [!Ref ApplicationName, "-appbuild"]]
       Description: !Join [ '', [ 'Project to build the hello-world application ', !Ref ApplicationName ] ]
-      ServiceRole: !Sub arn:aws:iam::968383140941:role/CodeBuildServiceRole
+      ServiceRole: !Sub arn:aws:iam::${DevAccount}:role/CodeBuildServiceRole
       Artifacts:
         Type: CODEPIPELINE
       Source:
@@ -145,7 +145,7 @@ Resources:
   CodePipeLine:
     Type: AWS::CodePipeline::Pipeline
     Properties:
-      RoleArn: !Sub arn:aws:iam::968383140941:role/cloud_formation
+      RoleArn: !Sub arn:aws:iam::${DevAccount}:role/CodeBuildServiceRole
       Stages:
         # Download source code from Github Repo to source-output-artifacts path in S3 Bucket
         - Name: Source
