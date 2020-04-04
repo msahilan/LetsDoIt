@@ -37,6 +37,10 @@ Parameters:
     Description: The ARN of the ECR repository
     Default: Development-Registry
 
+  DevAccount:
+    Description: AWS AccountNumber for dev
+    Type: Number
+    Default: 968383140941
 
 Resources:
 
@@ -53,7 +57,7 @@ Resources:
             Effect: Allow
             Principal:
               AWS:
-                - "arn:aws:iam::968383140941:group/ahilan-cli2"
+                - "!Sub arn:aws:iam::${DevAccount}:root"
             Action:
               - "ecr:GetDownloadUrlForLayer"
               - "ecr:BatchGetImage"
@@ -64,10 +68,10 @@ Resources:
               - "ecr:CompleteLayerUpload"
 
   # Create an S3 Bucket to store build artifacts
-  S3Bucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: cloudformation-aksv
+#  S3Bucket:
+#    Type: AWS::S3::Bucket
+#    Properties:
+#      BucketName: cloudformation-aksv
 
   # Create Access Role for CodePipeLine
 #  CodePipeLineExecutionRole:
