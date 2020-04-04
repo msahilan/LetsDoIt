@@ -35,7 +35,6 @@ Parameters:
   ECRRepositoryName:
     Type: String
     Description: The ARN of the ECR repository
-    Default: development-registry
 
   DevAccount:
     Description: AWS AccountNumber for dev
