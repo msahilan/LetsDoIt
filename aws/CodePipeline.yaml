@@ -25,8 +25,8 @@ Parameters:
     Default: master
 
   GithubOAuthToken:
-    "Type": String
-    Default: github-token
+    Type: String
+    Default: " "
 
   ContainerPort:
     Type: Number
@@ -157,7 +157,7 @@ Resources:
                 Repo: !Ref GithubRepo
                 Branch: !Ref GithubBranch
                 Owner: !Ref GithubUserName
-                OAuthToken: '{{resolve:ssm-secure:github-token:1}}'
+                OAuthToken: !Ref GithubOAuthToken
               RunOrder: 1
               OutputArtifacts:
                 - Name: App
