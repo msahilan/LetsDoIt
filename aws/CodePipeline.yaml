@@ -72,7 +72,7 @@ Resources:
           - Name: AWS_DEFAULT_REGION
             Value: !Ref AWS::Region
           - Name: ECR_REPOSITORY_URI
-            Value: !Sub "${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${ECRRepositoryName}"
+            Value: !Sub "${DevAccount}.dkr.ecr.${AWS::Region}.amazonaws.com/${ECRRepositoryName}"
           - Name: ARTIFACT_BUCKET
             Value: cloudformation-aksv
           - Name: APPLICATION_NAME
