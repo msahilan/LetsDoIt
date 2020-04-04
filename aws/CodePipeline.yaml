@@ -32,10 +32,6 @@ Parameters:
     Type: Number
     Default: 8080
 
-  ECRRepositoryName:
-    Type: String
-    Description: The ARN of the ECR repository
-
   DevAccount:
     Description: AWS AccountNumber for dev
     Type: Number
