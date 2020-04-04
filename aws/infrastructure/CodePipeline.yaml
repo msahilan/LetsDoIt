@@ -7,16 +7,16 @@ Parameters:
     Default: dev
   GithubUserName:
     Type: String
-    Default: klakshmanan5
+    Default: msahilan
   GithubRepo:
     Type: String
-    Default: Fargate-ECSCluster-Cloudformation
+    Default: LetsDoIt
   GithubBranch:
     Type: String
     Default: master
   GithubOAuthToken:
-    "Type": "AWS::SSM::Parameter::Value<String>"
-    Default: "github-token"
+    "Type": String
+    Default: "0b7a99d6a1f373488464cdd21ac55d620c96ceea"
   ContainerPort:
     Type: Number
     Default: 8080
