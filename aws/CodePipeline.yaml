@@ -142,7 +142,7 @@ Resources:
   CodePipeLine:
     Type: AWS::CodePipeline::Pipeline
     Properties:
-      RoleArn: !Sub arn:aws:iam::${AWS::AccountId}:role/CodePipelineServiceRole
+      RoleArn: !Sub arn:aws:iam::968383140941:role/cloud_formation
       Stages:
         # Download source code from Github Repo to source-output-artifacts path in S3 Bucket
         - Name: Source
@@ -157,7 +157,7 @@ Resources:
                 Repo: !Ref GithubRepo
                 Branch: !Ref GithubBranch
                 Owner: !Ref GithubUserName
-                OAuthToken: !Ref GithubOAuthToken
+                OAuthToken: '{{resolve:ssm-secure:github-token:1}}'
               RunOrder: 1
               OutputArtifacts:
                 - Name: App
