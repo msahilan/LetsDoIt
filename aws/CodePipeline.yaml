@@ -48,7 +48,7 @@ Resources:
   ECRRepository:
     Type: AWS::ECR::Repository
     Properties:
-      RepositoryName: "${ECRRepositoryName}"
+      RepositoryName: ${ECRRepositoryName}
 
   # Create the BuildProject with required Build information
   CodeBuildProject:
