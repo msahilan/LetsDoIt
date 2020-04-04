@@ -32,6 +32,11 @@ Parameters:
     Type: Number
     Default: 8080
 
+  ECRRepositoryName:
+    Type: String
+    Description: The ARN of the ECR repository
+    Default: dev-registry
+
   DevAccount:
     Description: AWS AccountNumber for dev
     Type: Number
@@ -43,7 +48,7 @@ Resources:
   ECRRepository:
     Type: AWS::ECR::Repository
     Properties:
-      RepositoryName: "dev-repository"
+      RepositoryName: "${ECRRepositoryName}"
 
   # Create the BuildProject with required Build information
   CodeBuildProject:
