@@ -49,23 +49,23 @@ Resources:
     Type: AWS::ECR::Repository
     Properties:
       RepositoryName: "dev-repository"
-      RepositoryPolicyText:
-        Version: "2012-10-17"
-        Statement:
-          -
-            Sid: AllowPushPull
-            Effect: Allow
-            Principal:
-              AWS:
-                - "!Sub arn:aws:iam::${DevAccount}:root"
-            Action:
-              - "ecr:GetDownloadUrlForLayer"
-              - "ecr:BatchGetImage"
-              - "ecr:BatchCheckLayerAvailability"
-              - "ecr:PutImage"
-              - "ecr:InitiateLayerUpload"
-              - "ecr:UploadLayerPart"
-              - "ecr:CompleteLayerUpload"
+#      RepositoryPolicyText:
+#        Version: "2012-10-17"
+#        Statement:
+#          -
+#            Sid: AllowPushPull
+#            Effect: Allow
+#            Principal:
+#              AWS:
+#                - "!Sub arn:aws:iam::${DevAccount}:root"
+#            Action:
+#              - "ecr:GetDownloadUrlForLayer"
+#              - "ecr:BatchGetImage"
+#              - "ecr:BatchCheckLayerAvailability"
+#              - "ecr:PutImage"
+#              - "ecr:InitiateLayerUpload"
+#              - "ecr:UploadLayerPart"
+#              - "ecr:CompleteLayerUpload"
 
   # Create an S3 Bucket to store build artifacts
 #  S3Bucket:
@@ -118,7 +118,7 @@ Resources:
     Properties:
       Name: !Join ['-', [!Ref ApplicationName, "-appbuild"]]
       Description: !Join [ '', [ 'Project to build the hello-world application ', !Ref ApplicationName ] ]
-      ServiceRole: !Sub arn:aws:iam::968383140941:role/cloud_formation
+      ServiceRole: !Sub arn:aws:iam::968383140941:role/CodeBuildServiceRole
       Artifacts:
         Location: cloudformation-aksv
         Type: "S3"
