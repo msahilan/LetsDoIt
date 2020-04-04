@@ -15,8 +15,8 @@ Parameters:
     Type: String
     Default: master
   GithubOAuthToken:
-    Type: String
-    Default: {{resolve:ssm-secure:github-token:1}}
+    "Type": "AWS::SSM::Parameter::Value<String>"
+    Default: "github-token"
   ContainerPort:
     Type: Number
     Default: 8080
