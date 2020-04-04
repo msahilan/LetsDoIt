@@ -54,7 +54,7 @@ Resources:
   CodeBuildProject:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: !Join ['-', [!Ref ApplicationName, "-appbuild"]]
+      Name: !Join ['-', [!Ref ApplicationName, "appbuild"]]
       Description: !Join [ '', [ 'Project to build the hello-world application ', !Ref ApplicationName ] ]
       ServiceRole: !Sub arn:aws:iam::${DevAccount}:role/CodeBuildServiceRole
       Artifacts:
