@@ -35,7 +35,7 @@ Parameters:
   ECRRepositoryName:
     Type: String
     Description: The ARN of the ECR repository
-    Default: Development-Registry
+    Default: development-registry
 
   DevAccount:
     Description: AWS AccountNumber for dev
@@ -49,68 +49,6 @@ Resources:
     Type: AWS::ECR::Repository
     Properties:
       RepositoryName: "dev-repository"
-#      RepositoryPolicyText:
-#        Version: "2012-10-17"
-#        Statement:
-#          -
-#            Sid: AllowPushPull
-#            Effect: Allow
-#            Principal:
-#              AWS:
-#                - "!Sub arn:aws:iam::${DevAccount}:root"
-#            Action:
-#              - "ecr:GetDownloadUrlForLayer"
-#              - "ecr:BatchGetImage"
-#              - "ecr:BatchCheckLayerAvailability"
-#              - "ecr:PutImage"
-#              - "ecr:InitiateLayerUpload"
-#              - "ecr:UploadLayerPart"
-#              - "ecr:CompleteLayerUpload"
-
-  # Create an S3 Bucket to store build artifacts
-#  S3Bucket:
-#    Type: AWS::S3::Bucket
-#    Properties:
-#      BucketName: cloudformation-aksv
-
-  # Create Access Role for CodePipeLine
-#  CodePipeLineExecutionRole:
-#    Type: AWS::IAM::Role
-#    Properties:
-#      AssumeRolePolicyDocument:
-#        Statement:
-#          - Effect: Allow
-#            Principal:
-#              Service: codepipeline.amazonaws.com
-#            Action: 'sts:AssumeRole'
-#      ManagedPolicyArns:
-#        - 'arn:aws:iam::aws:policy/AdministratorAccess'
-#
-#  # Create Access Role for CodeBuild
-#  CodeBuildExecutionRole:
-#    Type: AWS::IAM::Role
-#    Properties:
-#      AssumeRolePolicyDocument:
-#        Statement:
-#          Effect: Allow
-#          Principal:
-#            Service: codebuild.amazonaws.com
-#          Action: sts:AssumeRole
-#      ManagedPolicyArns:
-#        - arn:aws:iam::aws:policy/AdministratorAccess
-#
-#  # Create Access Role for Cloudformation
-#  CloudformationExecutionRole:
-#    Type: AWS::IAM::Role
-#    Properties:
-#      AssumeRolePolicyDocument:
-#        Statement:
-#          - Effect: Allow
-#            Principal:
-#              Service: cloudformation.amazonaws.com
-#            Action: 'sts:AssumeRole'
-#      ManagedPolicyArns:
-#        - 'arn:aws:iam::aws:policy/AdministratorAccess'
 
   # Create the BuildProject with required Build information
   CodeBuildProject:
