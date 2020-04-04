@@ -33,7 +33,7 @@ Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Join ['-', [!Ref Stage, !Ref 'AWS::AccountId', 's3bucket']]
+      BucketName: my-bucket-ldn
 
   # Create Access Role for CodePipeLine
   CodePipeLineExecutionRole:
@@ -102,7 +102,7 @@ Resources:
     DependsOn: S3Bucket
     Properties:
       ArtifactStore:
-        Location: !Join ['-', [!Ref Stage, !Ref 'AWS::AccountId', 's3bucket']]
+        Location: my-bucket-ldn
         Type: S3
       Name: !Join ['-', [!Ref Stage, !Ref 'AWS::AccountId', 'CodePipeLine']]
       RestartExecutionOnUpdate: False
