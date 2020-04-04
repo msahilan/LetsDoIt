@@ -145,7 +145,7 @@ Resources:
   CodePipeLine:
     Type: AWS::CodePipeline::Pipeline
     Properties:
-      RoleArn: !Sub arn:aws:iam::${DevAccount}:role/CodeBuildServiceRole
+      RoleArn: !Sub arn:aws:iam::${DevAccount}:role/CodePipelineServiceRole
       Stages:
         # Download source code from Github Repo to source-output-artifacts path in S3 Bucket
         - Name: Source
