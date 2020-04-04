@@ -209,3 +209,8 @@ Resources:
 #                StackName: !Join ['-', [!Ref Stage, !Ref 'AWS::AccountId', 'FargateECSCluster']]
 #                TemplatePath: source-output-artifacts::Cloudformation/Fargate-Cluster.yml
 #              RunOrder: 1
+
+
+      ArtifactStore:
+        Type: S3
+        Location: cloudformation-aksv
