@@ -120,8 +120,7 @@ Resources:
       Description: !Join [ '', [ 'Project to build the hello-world application ', !Ref ApplicationName ] ]
       ServiceRole: !Sub arn:aws:iam::968383140941:role/CodeBuildServiceRole
       Artifacts:
-        Location: cloudformation-aksv
-        Type: "S3"
+        Type: CODEPIPELINE
       Source:
         Type: CODEPIPELINE
         BuildSpec: buildspec.yml
