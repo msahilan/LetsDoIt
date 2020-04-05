@@ -138,7 +138,7 @@ Resources:
                 ParameterOverrides: !Sub |
                   {
                     "DockerImageTag" : { "Fn::GetParam" : ["BuildOutput",  "build_tag.json", "tag"] },
-                    AppName: "${ApplicationName}",
+                    "AppName: "${ApplicationName}",
                     "Stage":  "${Stage}",
                     "ContainerPort": "${ContainerPort}"
                   }
