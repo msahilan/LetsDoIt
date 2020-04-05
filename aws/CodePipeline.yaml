@@ -137,7 +137,7 @@ Resources:
                 TemplatePath: App::aws/Fargate-Cluster.yaml
                 ParameterOverrides: !Sub |
                   {
-                    "DockerImageTag" : { "Fn::GetParam" : ["BuildOutput",  "build_tag.json", "tag"] },
+                    "ImageURI" : { "Fn::GetParam" : ["BuildOutput",  "build_tag.json", "ImageURI"] },
                     "ApplicationName" : "${ApplicationName}",
                     "Stage" :  "${Stage}",
                     "ContainerPort" : "${ContainerPort}"
