@@ -3,8 +3,14 @@ Description: The CloudFormation template for the Fargate ECS Cluster.
 
 Parameters:
 
+  ApplicationName:
+    Description: Name of the Application
+    Type: String
+    Default: hello-world
+
   Stage:
     Type: String
+    Default: dev
 
   ContainerPort:
     Type: Number
