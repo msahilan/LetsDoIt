@@ -138,9 +138,9 @@ Resources:
                 ParameterOverrides: !Sub |
                   {
                     "DockerImageTag" : { "Fn::GetParam" : ["BuildOutput",  "build_tag.json", "tag"] },
-                    "AppName: "${ApplicationName}",
-                    "Stage":  "${Stage}",
-                    "ContainerPort": "${ContainerPort}"
+                    "ApplicationName" : "${ApplicationName}",
+                    "Stage" :  "${Stage}",
+                    "ContainerPort" : "${ContainerPort}"
                   }
                 RoleArn: !Sub arn:aws:iam::${DevAccount}:role/CodePipelineCloudFormationRole
                 OutputFileName: development-stackoutput.json
