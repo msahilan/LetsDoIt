@@ -45,7 +45,7 @@ Resources:
     Properties:
       CidrBlock: 172.10.1.0/24
       VpcId: !Ref VPC
-      AvailabilityZone: eu-west-1a
+      AvailabilityZone: eu-west-2a
 
   # Create a Subnet
   SubnetB:
@@ -53,7 +53,7 @@ Resources:
     Properties:
       CidrBlock: 172.10.2.0/24
       VpcId: !Ref VPC
-      AvailabilityZone: eu-west-1b
+      AvailabilityZone: eu-west-2b
 
   # Create a route table to allow access to internet
   PublicRouteTable:
