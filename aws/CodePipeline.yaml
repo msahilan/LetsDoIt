@@ -134,7 +134,7 @@ Resources:
                 ActionMode: CHANGE_SET_REPLACE
                 StackName: !Sub ${ApplicationName}-dev
                 Capabilities: CAPABILITY_NAMED_IAM
-                TemplatePath: DevelopmentStackOutput::aws/Fargate-Cluster.yaml
+                TemplatePath: App::aws/Fargate-Cluster.yaml
                 ParameterOverrides: !Sub |
                   {
                     "DockerImageTag" : { "Fn::GetParam" : ["BuildOutput",  "build_tag.json", "tag"] },
