@@ -120,34 +120,35 @@ Resources:
                 - Name: BuildOutput
               RunOrder: 1
 
-#        # Deploy the project by executing Fargate-Cluster.yml file in the Source code with Cloudformation.
-#        - Name: Deploy
-#          Actions:
-#            - Name: Deploy
-#              ActionTypeId:
-#                Category: Deploy
-#                Owner: AWS
-#                Version: 1
-#                Provider: CloudFormation
-#              InputArtifacts:
-#                - Name: source-output-artifacts
-#                - Name: build-output-artifacts
-#              Configuration:
-#                ActionMode: CREATE_UPDATE
-#                Capabilities: CAPABILITY_NAMED_IAM
-#                # Pass parameter values to Fargate-Cluster.yml for deployment
-#                ParameterOverrides: !Sub |
-#                  {
-#                    "ImageURI" : { "Fn::GetParam" : ["build-output-artifacts", "imageDetail.json", "ImageURI"] },
-#                    "Stage":  "${Stage}",
-#                    "ContainerPort": "${ContainerPort}"
-#                  }
-#                RoleArn:
-#                  Fn::GetAtt: [ CloudformationExecutionRole, Arn ]
-#                StackName: !Join ['-', [!Ref Stage, !Ref 'AWS::AccountId', 'FargateECSCluster']]
-#                TemplatePath: source-output-artifacts::Cloudformation/Fargate-Cluster.yml
-#              RunOrder: 1
-
+        # Deploy the project by executing Fargate-Cluster.yml file in the Source code with Cloudformation.
+        - Name: DeployToDev
+          Actions:
+            - Name: DeployApplication
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Version: 1
+                Provider: CloudFormation
+              Configuration:
+                ChangeSetName: !Sub ${ApplicationName}-dev
+                ActionMode: CHANGE_SET_REPLACE
+                StackName: !Sub ${ApplicationName}-dev
+                Capabilities: CAPABILITY_NAMED_IAM
+                TemplatePath: source-output-artifacts::Cloudformation/Fargate-Cluster.yml
+                ParameterOverrides: !Sub |
+                  {
+                    "DockerImageTag" : { "Fn::GetParam" : ["BuildOutput",  "build_tag.json", "tag"] },
+                    pAppName: "${ApplicationName}",
+                    "Stage":  "${Stage}",
+                    "ContainerPort": "${ContainerPort}"
+                  }
+                OutputFileName: development-stackoutput.json
+              InputArtifacts:
+                - Name: BuildOutput
+              OutputArtifacts:
+                - Name: DevelopmentStackOutput
+              RoleArn: !Sub arn:aws:iam::${DevAccount}:role/CodePipelineCloudFormationRole
+              RunOrder: 1
 
       ArtifactStore:
         Type: S3
