@@ -131,7 +131,7 @@ Resources:
                 Provider: CloudFormation
               Configuration:
                 ChangeSetName: !Sub ${ApplicationName}-dev
-                ActionMode: CHANGE_SET_REPLACE
+                ActionMode: CREATE_UPDATE
                 StackName: !Sub ${ApplicationName}-dev
                 Capabilities: CAPABILITY_NAMED_IAM
                 TemplatePath: source-output-artifacts::Cloudformation/Fargate-Cluster.yml
