@@ -145,6 +145,7 @@ Resources:
                 RoleArn: !Sub arn:aws:iam::${DevAccount}:role/CodePipelineCloudFormationRole
                 OutputFileName: development-stackoutput.json
               InputArtifacts:
+                - Name: App
                 - Name: BuildOutput
               OutputArtifacts:
                 - Name: DevelopmentStackOutput
