@@ -131,7 +131,7 @@ Resources:
                 Provider: CloudFormation
               Configuration:
                 ChangeSetName: !Sub ${ApplicationName}-dev
-                ActionMode: CREATE_UPDATE
+                ActionMode: CHANGE_SET_REPLACE
                 StackName: !Sub ${ApplicationName}-dev
                 Capabilities: CAPABILITY_NAMED_IAM
                 TemplatePath: source-output-artifacts::Cloudformation/Fargate-Cluster.yml
@@ -142,12 +142,12 @@ Resources:
                     "Stage":  "${Stage}",
                     "ContainerPort": "${ContainerPort}"
                   }
+                RoleArn: !Sub arn:aws:iam::${DevAccount}:role/CodePipelineCloudFormationRole
                 OutputFileName: development-stackoutput.json
               InputArtifacts:
                 - Name: BuildOutput
               OutputArtifacts:
                 - Name: DevelopmentStackOutput
-              RoleArn: !Sub arn:aws:iam::${DevAccount}:role/CodePipelineCloudFormationRole
               RunOrder: 1
 
       ArtifactStore:
