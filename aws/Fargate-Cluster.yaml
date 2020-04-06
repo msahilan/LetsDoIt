@@ -95,19 +95,19 @@ Resources:
       InternetGatewayId: !Ref InternetGateway
       VpcId: !Ref VPC
 
-#  # Create Access Role for ECS-Tasks
-#  ExecutionRole:
-#    Type: AWS::IAM::Role
-#    Properties:
-#      RoleName: !Join ['-', [!Ref DevAccount, 'ExecutionRole']]
-#      AssumeRolePolicyDocument:
-#        Statement:
-#          - Effect: Allow
-#            Principal:
-#              Service: ecs-tasks.amazonaws.com
-#            Action: 'sts:AssumeRole'
-#      ManagedPolicyArns:
-#        - 'arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy'
+  # Create Access Role for ECS-Tasks
+  ExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Join ['-', [!Ref DevAccount, 'ExecutionRole']]
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy'
 
   # Create a TaskDefinition with container details
   TaskDefinition:
@@ -118,8 +118,8 @@ Resources:
       NetworkMode: awsvpc
       RequiresCompatibilities:
         - 'FARGATE'
-      TaskRoleArn: !Sub arn:aws:iam::${DevAccount}:role/CodePipelineCloudFormationRole
-      ExecutionRoleArn: !Sub arn:aws:iam::${DevAccount}:role/CodePipelineCloudFormationRole
+      TaskRoleArn: !Ref ExecutionRole
+      ExecutionRoleArn: !Ref ExecutionRole
       ContainerDefinitions:
         - Name: !Join ['-', [!Ref DevAccount, 'Container']]
           Image: !Ref ImageURI
